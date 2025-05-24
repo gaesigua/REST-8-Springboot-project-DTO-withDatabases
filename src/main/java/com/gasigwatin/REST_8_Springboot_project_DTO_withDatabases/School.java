@@ -3,63 +3,75 @@ package com.gasigwatin.REST_8_Springboot_project_DTO_withDatabases;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
-import java.util.List;
-
-@Entity
-@Table(name = "School_Table")
-public class School {
+@Entity(name = "School Table")
+public class School{
 
     @Id
     @GeneratedValue
     private Integer id;
 
+    @Column(name = "School Name", length = 255)
     private String schoolName;
 
-    @OneToMany(mappedBy = "school")
+
+    @Column(name = "School Type", length = 20)
+    private String schoolType;
+
+    @Column(name = "Founded", length = 4)
+    private int foundedDate;
+
+    @OneToMany(mappedBy = "school", cascade = CascadeType.ALL)
     @JsonManagedReference
-    private List<Student> student;
+    private Student student;
 
 
-//    Creating an empty CONSTRUCTOR (REQUIRED)
 
     public School(){}
 
-//    Creating one CONSTRUCTOR with parameters
 
-    public School(String schoolName){
+    public School(String schoolName, String schoolType, int foundedDate){
         this.schoolName = schoolName;
+        this.schoolType = schoolType;
+        this.foundedDate = foundedDate;
     }
 
-//    Setter and Getter for Id
-
-    public void setId(Integer id) {
+    public void setId(Integer id){
         this.id = id;
     }
 
-    public Integer getId() {
+    public Integer getId(){
         return id;
     }
 
-    //    Setter and Getter for schoolName
-
-
-    public void setSchoolName(String schoolName) {
+    public void setSchoolName(String schoolName){
         this.schoolName = schoolName;
     }
 
-    public String getSchoolName() {
+    public String getSchoolName(){
         return schoolName;
     }
 
-//    Setter and Getter for List<Student>
-
-    public List<Student> getStudent() {
-        return student;
+    public void setSchoolType(String schoolType){
+        this.schoolType = schoolType;
     }
 
-    public void setStudent(List<Student> student) {
+    public String getSchoolType(){
+        return schoolType;
+    }
+
+    public void setFoundedDate(int foundedDate){
+        this.foundedDate = foundedDate;
+    }
+
+    public int getFoundedDate(){
+        return foundedDate;
+    }
+
+    public void setStudent(Student student) {
         this.student = student;
     }
 
-
+    public Student getStudent() {
+        return student;
+    }
 }
