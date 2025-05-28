@@ -1,5 +1,6 @@
 package com.gasigwatin.REST_8_Springboot_project_DTO_withDatabases;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -88,5 +89,14 @@ public class StudentController{
 
         return studentRepository.findAllByFirstNameContaining(studentFirstName);
 
+    }
+
+    //LET'S DELETE ONE STUDENT
+
+    @DeleteMapping("/student/search/{student-id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteOneStudent (@PathVariable ("student-id") Integer studentId){
+
+        studentRepository.deleteById(studentId);
     }
 }

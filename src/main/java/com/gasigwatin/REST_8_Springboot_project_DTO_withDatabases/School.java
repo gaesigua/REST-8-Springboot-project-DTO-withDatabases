@@ -16,7 +16,7 @@ public class School{
     @Column(name = "School Name", length = 255)
     private String schoolName;
 
-    @OneToMany(mappedBy = "school")
+    @OneToMany(mappedBy = "school", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Student> student;
 
